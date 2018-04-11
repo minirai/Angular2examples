@@ -1,0 +1,53 @@
+<p>
+  reactiveform works!
+</p>
+<form [formGroup]='reg'>
+  <div class="form-group" >
+    <label>Name: </label>
+    <input type="text" formControlName="name" >
+      <div *ngIf="reg.get('name').errors && (reg.dirty || reg.touched)">
+          <span *ngIf="reg.get('name').errors.required">Name required</span>
+          
+      </div>
+    </div>
+    <div class="form-group" >
+        <label>Pic:</label> <input type="text" formControlName="pic" >
+          <div *ngIf="reg.get('pic').errors && (reg.dirty || reg.touched)">
+              <span *ngIf="reg.get('pic').errors.required">Pic required</span>
+              
+          </div>
+      </div>
+      <div class="form-group" >
+          <label>Cost: </label><input type="text" formControlName="cost" >
+            <div *ngIf="reg.get('cost').errors && (reg.dirty || reg.touched)">
+                <span *ngIf="reg.get('cost').errors.required">Cost required</span>
+                
+                <span *ngIf="reg.get('cost').errors.pattern">only numbers allowed.</span>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label>Vendor: </label>
+            <select formControlName="vendor">
+              <option value="dfs">dfs</option>
+              <option value="dsfasd">dsfasd</option>
+              <option value="dfasdg">dfasdg</option>
+            </select>
+            
+              <div *ngIf="reg.get('vendor').errors && (reg.dirty || reg.touched)">
+                  <span *ngIf="reg.get('vendor').errors.required">vendor required</span>
+                  
+              </div>
+          </div>
+          <div class="form-group" >
+              <label>Quantity: <input type="text" formControlName="qty" ></label>
+                <div *ngIf="reg.get('qty').errors && (reg.dirty || reg.touched)">
+                    <span *ngIf="reg.get('qty').errors.required">qty required</span>
+                   
+                    <span *ngIf="reg.get('qty').errors.pattern">Numbers allowed.</span>
+                </div>
+              </div>
+  
+  <p><button type="submit" [disabled]="!reg.valid" (click)="saverec()">Submit</button></p>
+  <hr />
+  {{products | json}}
+</form>
